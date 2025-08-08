@@ -1,0 +1,9 @@
+%%{init: {"theme":"base"}}%%
+
+stateDiagram-v2
+    [*] --> Start
+    Start --> WaitForPin : enter_start
+    WaitForPin --> AccessGranted : correct_pin
+    WaitForPin --> WaitForPin : incorrect_pin / tries < 3
+    WaitForPin --> CardEaten : incorrect_pin / tries >= 3
+    AccessGranted --> Start : logout
